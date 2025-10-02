@@ -4,18 +4,510 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ClinVet - Tu veterinaria de confianza</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    /* Fuente global */
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      background: #eee8ef;
+      color: #333;
+    }
+    
+    /* Encabezado */
+    header {
+      background: #065df5;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    header .logo {
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+    
+    header nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 300;
+    }
+    
+    header nav a:hover {
+      color: #a777bd;
+    }
+    
+    /* Menú hamburguesa para móviles */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    /* Hero */
+    .hero {
+      background: linear-gradient(rgba(6,93,245,0.7), rgba(167,119,189,0.7)),
+                  url('https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=1350&q=80') no-repeat center/cover;
+      color: #fff;
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-top: 0;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: #7bbdfa;
+      color: #fff;
+      padding: 0.7rem 1.2rem;
+      border-radius: 30px;
+      margin-top: 1rem;
+      text-decoration: none;
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+    }
+    
+    .btn:hover {
+      background: #a777bd;
+    }
+    
+    /* Secciones */
+    section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    h2 {
+      color: #065df5;
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Servicios */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    
+    .card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    
+    /* Galería */
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    
+    .galeria-grid img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      height: 200px;
+    }
+    
+    /* Contacto */
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    
+    .contact-form {
+      flex: 1;
+      min-width: 300px;
+      max-width: 400px;
+    }
+    
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    
+    input, textarea {
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    button {
+      padding: 0.8rem;
+      border: none;
+      background: #065df5;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    button:hover {
+      background: #a777bd;
+    }
+    
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+    }
+    
+    .contact-links {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .map-container {
+      margin-top: 2rem;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .map-container iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+    }
+    
+    /* Footer */
+    footer {
+      background: #065df5;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-wrap: wrap;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      header nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+      }
+      
+      header nav ul.show {
+        display: flex;
+      }
+      
+      .hero {
+        padding: 4rem 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      section {
+        padding: 2rem 1rem;
+      }
+      
+      .contact-container {
+        flex-direction: column;
+      }
+    }
+    
+    /* Nuevos estilos para mejoras visuales */
+    .service-icon {
+      font-size: 2.5rem;
+      color: #065df5;
+      margin-bottom: 1rem;
+    }
+    
+    .testimonios {
+      background: #f8f9fa;
+      padding: 3rem 2rem;
+    }
+    
+    .testimonio-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin: 1rem;
+      max-width: 300px;
+    }
+    
+    .testimonio-text {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    
+    .testimonio-autor {
+      font-weight: 600;
+      color: #065df5;
+    }
+    
+    .emergencia-banner {
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    /* Mejoras para el formulario */
+    .form-options {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .form-option {
+      flex: 1;
+      text-align: center;
+      padding: 0.8rem;
+      border: 2px solid #065df5;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .form-option.active {
+      background: #065df5;
+      color: white;
+    }
+    
+    .form-option i {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .whatsapp-explanation {
+      background: #e8f5e8;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      border-left: 4px solid #25D366;
+    }
+    
+    .contact-methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    
+    .contact-method {
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .location-feature {
+      background: #e8f4f8;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      border-left: 4px solid #065df5;
+    }
+
+    /* ===== NUEVOS ESTILOS PARA LA SECCIÓN DE CITAS ===== */
+    .citas-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    
+    .citas-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      color: #333;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .citas-steps {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+    
+    .step {
+      display: flex;
+      align-items: center;
+      margin: 0 1rem;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+    
+    .step.active {
+      opacity: 1;
+    }
+    
+    .step-number {
+      background: #065df5;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 0.5rem;
+      font-weight: bold;
+    }
+    
+    .citas-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .cita-option {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 10px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .cita-option:hover {
+      border-color: #065df5;
+      transform: translateY(-5px);
+    }
+    
+    .cita-option.selected {
+      border-color: #065df5;
+      background: #e3f2fd;
+    }
+    
+    .calendly-container {
+      margin-top: 2rem;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    .service-details {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      text-align: left;
+    }
+    
+    .admin-panel {
+      background: #f8f9fa;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+      text-align: left;
+    }
+    
+    .citas-list {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    
+    .cita-item {
+      background: white;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      border-left: 4px solid #065df5;
+    }
+
+    /* Modal para información de la cita */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+    
+    .modal-content {
+      background-color: white;
+      margin: 10% auto;
+      padding: 2rem;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+  </style>
 </head>
 <body>
   <!-- Encabezado -->
   <header>
     <div class="logo">🐾 ClinVet</div>
+    <button class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </button>
     <nav>
-      <ul>
+      <ul id="navMenu">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#galeria">Galería</a></li>
+        <li><a href="#testimonios">Testimonios</a></li>
+        <li><a href="#citas">Citas</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
@@ -25,7 +517,8 @@
   <section id="inicio" class="hero">
     <h1>Bienvenido a ClinVet</h1>
     <p>Cuidamos de tus mascotas con amor, experiencia y profesionalismo.</p>
-    <a href="#contacto" class="btn">Agendar cita</a>
+    <a href="#citas" class="btn">Agendar cita</a>
+    <a href="#servicios" class="btn" style="background: #a777bd;">Nuestros Servicios</a>
   </section>
 
   <!-- Servicios -->
@@ -33,53 +526,590 @@
     <h2>Nuestros Servicios</h2>
     <div class="cards">
       <div class="card">
-        <h3>Consultas</h3>
-        <p>Diagnóstico y chequeo general de tu mascota.</p>
+        <div class="service-icon">
+          <i class="fas fa-stethoscope"></i>
+        </div>
+        <h3>Consultas Generales</h3>
+        <p>Diagnóstico y chequeo completo de tu mascota con equipos de última generación.</p>
       </div>
       <div class="card">
-        <h3>Vacunas</h3>
-        <p>Esquemas completos para perros y gatos.</p>
+        <div class="service-icon">
+          <i class="fas fa-syringe"></i>
+        </div>
+        <h3>Vacunación</h3>
+        <p>Esquemas completos de vacunación para perros, gatos y mascotas exóticas.</p>
       </div>
       <div class="card">
+        <div class="service-icon">
+          <i class="fas fa-user-md"></i>
+        </div>
         <h3>Cirugías</h3>
-        <p>Procedimientos seguros con equipo especializado.</p>
+        <p>Procedimientos quirúrgicos seguros con anestesia inhalatoria y monitoreo constante.</p>
       </div>
       <div class="card">
-        <h3>Estética</h3>
-        <p>Baños, cortes y cuidado de tu mejor amigo.</p>
+        <div class="service-icon">
+          <i class="fas fa-paw"></i>
+        </div>
+        <h3>Estética Canina</h3>
+        <p>Baños terapéuticos, cortes de raza y cuidado especializado para tu compañero.</p>
       </div>
     </div>
   </section>
 
-  <!-- Galería -->
+  <!-- Galería con imágenes reales sin copyright -->
   <section id="galeria">
-    <h2>Galería</h2>
+    <h2>Nuestro Trabajo</h2>
     <div class="galeria-grid">
-      <img src="https://place-puppy.com/300x200" alt="Perro feliz">
-      <img src="https://placekitten.com/300/200" alt="Gato bonito">
-      <img src="https://place-puppy.com/301x200" alt="Perro en revisión">
-      <img src="https://placekitten.com/301/200" alt="Gato curioso">
+      <!-- Imágenes de Unsplash (gratuitas, sin copyright) -->
+      <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Golden Retriever feliz en consulta">
+      <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Gato siendo examinado por veterinario">
+      <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Veterinario cuidando perro pequeño">
+      <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Perro labrador recibiendo cuidado">
     </div>
   </section>
 
-  <!-- Contacto -->
+  <!-- Nueva sección: Testimonios -->
+  <section id="testimonios" class="testimonios">
+    <h2>Lo que dicen nuestros clientes</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+      <div class="testimonio-card">
+        <div class="testimonio-text">
+          "Excelente servicio, mi perro Rocky recibió la mejor atención. Muy profesionales y amables."
+        </div>
+        <div class="testimonio-autor">- María González</div>
+      </div>
+      <div class="testimonio-card">
+        <div class="testimonio-text">
+          "Llevo a mis 3 gatos aquí desde hace años. Confío plenamente en el equipo de ClinVet."
+        </div>
+        <div class="testimonio-autor">- Carlos Rodríguez</div>
+      </div>
+      <div class="testimonio-card">
+        <div class="testimonio-text">
+          "Emergencia atendida inmediatamente. Salvaron la vida de mi mascota. ¡Gracias!"
+        </div>
+        <div class="testimonio-autor">- Ana Martínez</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nueva sección: Sistema de Citas -->
+  <section id="citas" class="citas-section">
+    <div class="citas-container">
+      <h2 style="color: #065df5; margin-bottom: 1rem;">🎯 Agenda Tu Cita en Línea</h2>
+      <p style="color: #666; margin-bottom: 2rem;">Sistema profesional de citas - Sin complicaciones</p>
+      
+      <!-- Pasos del proceso -->
+      <div class="citas-steps">
+        <div class="step active" id="step1">
+          <div class="step-number">1</div>
+          <span>Selecciona Servicio</span>
+        </div>
+        <div class="step" id="step2">
+          <div class="step-number">2</div>
+          <span>Elige Horario</span>
+        </div>
+        <div class="step" id="step3">
+          <div class="step-number">3</div>
+          <span>Confirma Cita</span>
+        </div>
+      </div>
+      
+      <!-- Selección de servicios -->
+      <div class="citas-options">
+        <div class="cita-option" onclick="selectService('consulta-general', this)">
+          <i class="fas fa-stethoscope" style="color: #065df5; font-size: 2rem;"></i>
+          <h4>Consulta General</h4>
+          <p>Revisión completa y diagnóstico</p>
+          <small>⏱ 30 minutos • 🏥 Consultorio</small>
+        </div>
+        
+        <div class="cita-option" onclick="selectService('vacunacion', this)">
+          <i class="fas fa-syringe" style="color: #065df5; font-size: 2rem;"></i>
+          <h4>Vacunación</h4>
+          <p>Esquema completo de vacunas</p>
+          <small>⏱ 20 minutos • 💉 Inyección</small>
+        </div>
+        
+        <div class="cita-option" onclick="selectService('estetica', this)">
+          <i class="fas fa-paw" style="color: #065df5; font-size: 2rem;"></i>
+          <h4>Estética Canina</h4>
+          <p>Baño, corte y cuidado especial</p>
+          <small>⏱ 60-90 minutos • ✂️ Estética</small>
+        </div>
+        
+        <div class="cita-option" onclick="selectService('cirugia', this)">
+          <i class="fas fa-user-md" style="color: #065df5; font-size: 2rem;"></i>
+          <h4>Consulta Quirúrgica</h4>
+          <p>Evaluación pre-operatoria</p>
+          <small>⏱ 45 minutos • 🏥 Consultorio</small>
+        </div>
+      </div>
+
+      <!-- Detalles del servicio seleccionado -->
+      <div id="serviceDetails" class="service-details" style="display: none;">
+        <h4 id="selectedServiceTitle" style="color: #065df5;"></h4>
+        <p id="selectedServiceDesc"></p>
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
+          <button class="btn" onclick="openCalendly()" style="background: #25D366;">
+            <i class="far fa-calendar-alt"></i> Ver Horarios Disponibles
+          </button>
+          <button class="btn" onclick="showServiceInfo()" style="background: #065df5;">
+            <i class="fas fa-info-circle"></i> Más Información
+          </button>
+        </div>
+      </div>
+
+      <!-- Información importante -->
+      <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin-top: 2rem; border-left: 4px solid #ffc107;">
+        <h5 style="color: #856404; margin: 0;">📋 Información Importante</h5>
+        <p style="color: #856404; margin: 0.5rem 0 0 0; font-size: 0.9rem;">
+          • Llega 10 minutos antes de tu cita<br>
+          • Trae el historial de vacunas de tu mascota<br>
+          • Cancelaciones con 24 horas de anticipación
+        </p>
+      </div>
+
+      <!-- Panel de administración (oculto para clientes) -->
+      <div class="admin-panel" id="adminPanel" style="display: none;">
+        <h4 style="color: #065df5;">🔧 Panel de Administración - ClinVet</h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+          <div>
+            <h5>📊 Resumen del Día</h5>
+            <p>Citas hoy: <strong id="citasHoy">3</strong></p>
+            <p>Próxima cita: <strong id="proximaCita">10:00 AM</strong></p>
+          </div>
+          <div>
+            <h5>⚡ Acciones Rápidas</h5>
+            <button class="btn" onclick="exportCitas()" style="background: #28a745; margin: 0.2rem;">
+              <i class="fas fa-download"></i> Exportar
+            </button>
+            <button class="btn" onclick="syncCalendars()" style="background: #17a2b8; margin: 0.2rem;">
+              <i class="fas fa-sync"></i> Sincronizar
+            </button>
+          </div>
+        </div>
+        <div class="citas-list" id="citasList">
+          <!-- Las citas se cargarán aquí -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal de información del servicio -->
+  <div id="serviceModal" class="modal">
+    <div class="modal-content">
+      <span style="float: right; cursor: pointer; font-size: 1.5rem;" onclick="closeModal()">&times;</span>
+      <h3 id="modalTitle" style="color: #065df5;"></h3>
+      <div id="modalContent"></div>
+      <button class="btn" onclick="closeModalAndSchedule()" style="background: #25D366; margin-top: 1rem;">
+        <i class="far fa-calendar-alt"></i> Agendar Ahora
+      </button>
+    </div>
+  </div>
+
+  <!-- Contacto MEJORADO -->
   <section id="contacto">
     <h2>Contacto</h2>
-    <form>
-      <input type="text" placeholder="Tu nombre" required>
-      <input type="tel" placeholder="Tu teléfono" required>
-      <textarea placeholder="Mensaje"></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-    <div class="contact-links">
-      <a href="https://wa.me/521234567890" target="_blank" class="btn">WhatsApp</a>
-      <a href="https://maps.google.com" target="_blank" class="btn">Ubicación</a>
+    <div class="contact-container">
+      <div class="contact-form">
+        <h3>Envíanos un mensaje</h3>
+        
+        <div class="whatsapp-explanation">
+          <i class="fab fa-whatsapp" style="color: #25D366; font-size: 1.2rem;"></i>
+          <strong>Prefiere contactarnos por WhatsApp</strong> - Respuesta más rápida y directa
+        </div>
+        
+        <form id="contactForm">
+          <input type="text" id="nombre" placeholder="Tu nombre" required>
+          <input type="tel" id="telefono" placeholder="Tu teléfono" required>
+          <select id="tipo-mascota" required>
+            <option value="">Tipo de mascota</option>
+            <option value="perro">Perro</option>
+            <option value="gato">Gato</option>
+            <option value="ave">Ave</option>
+            <option value="otro">Otro</option>
+          </select>
+          <textarea id="mensaje" placeholder="Describe el motivo de tu consulta..." rows="5" required></textarea>
+          <button type="submit" class="btn" style="background: #25D366;">
+            <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+          </button>
+        </form>
+        
+        <!-- Métodos alternativos de contacto -->
+        <div class="contact-methods">
+          <div class="contact-method">
+            <i class="fab fa-whatsapp" style="color: #25D366; font-size: 2rem;"></i>
+            <h4>WhatsApp Directo</h4>
+            <p>Chatea con nosotros inmediatamente</p>
+            <a href="https://wa.me/526727511207?text=Hola,%20me%20interesa%20agendar%20una%20cita%20para%20mi%20mascota" 
+               target="_blank" class="btn" style="background: #25D366;">
+              <i class="fab fa-whatsapp"></i> Abrir WhatsApp
+            </a>
+          </div>
+          
+          <div class="contact-method">
+            <i class="fas fa-phone" style="color: #065df5; font-size: 2rem;"></i>
+            <h4>Llamada Telefónica</h4>
+            <p>¿Prefieres hablar directamente?</p>
+            <a href="tel:+526727511207" class="btn">
+              <i class="fas fa-phone"></i> Llamar Ahora
+            </a>
+          </div>
+          
+          <div class="contact-method">
+            <i class="fas fa-map-marker-alt" style="color: #ff6b6b; font-size: 2rem;"></i>
+            <h4>Visítanos</h4>
+            <p>Ven a nuestra clínica</p>
+            
+            <div class="location-feature">
+              <i class="fas fa-info-circle" style="color: #065df5;"></i>
+              <small>Te daremos indicaciones desde tu ubicación actual</small>
+            </div>
+            
+            <button class="btn" style="background: #ff6b6b;" onclick="getDirections()">
+              <i class="fas fa-directions"></i> Cómo Llegar
+            </button>
+            
+            <!-- Botón alternativo por si el usuario no quiere compartir ubicación -->
+            <a href="https://www.google.com/maps/dir//Clinvet+Navolato" 
+               target="_blank" 
+               class="btn" 
+               style="background: #a777bd; margin-top: 0.5rem;">
+              <i class="fas fa-map"></i> Ver en Maps
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-info">
+        <h3>Información de Contacto</h3>
+        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px;">
+          <p><i class="fas fa-map-marker-alt" style="color: #065df5;"></i> <strong>Dirección:</strong> Clinvet Navolato</p>
+          <p><i class="fas fa-phone" style="color: #065df5;"></i> <strong>Teléfono:</strong> <a href="tel:+526727511207">(672) 751-1207</a></p>
+          <p><i class="fab fa-whatsapp" style="color: #25D366;"></i> <strong>WhatsApp:</strong> <a href="https://wa.me/526727511207">(672) 751-1207</a></p>
+          <p><i class="fas fa-clock" style="color: #065df5;"></i> <strong>Horario:</strong></p>
+          <ul style="text-align: left; margin-left: 1rem;">
+            <li>Lunes a Viernes: 9:00 AM - 7:00 PM</li>
+            <li>Sábados: 9:00 AM - 2:00 PM</li>
+            <li>Emergencias 24/7</li>
+          </ul>
+        </div>
+        
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.1946305472275!2d-107.69510402463253!3d24.754515077998633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86bcb7cbe5c93bbf%3A0xcc87406980ff83da!2sClinvet%20Navolato!5e0!3m2!1ses-419!2smx!4v1759426362995!5m2!1ses-419!2smx" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
     </div>
   </section>
+
+  <!-- Banner de emergencia -->
+  <div class="emergencia-banner">
+    <h3><i class="fas fa-exclamation-triangle"></i> Servicio de Emergencias 24/7</h3>
+    <p>¿Tu mascota necesita atención urgente? Llámanos inmediatamente: <strong>(672) 751-1207</strong></p>
+  </div>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 ClinVet. Todos los derechos reservados.</p>
+    <p>&copy; 2025 ClinVet Navolato. Todos los derechos reservados.</p>
+    <div style="margin-top: 1rem;">
+      <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-facebook"></i></a>
+      <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+      <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-tiktok"></i></a>
+    </div>
   </footer>
+
+  <script>
+    // Sistema de Citas con Calendly - Implementación Completa
+    let selectedService = '';
+    let serviceData = {
+      'consulta-general': {
+        title: 'Consulta General',
+        description: 'Revisión completa de salud, diagnóstico y tratamiento.',
+        duration: '30 minutos',
+        price: '$300 - $500 MXN',
+        details: 'Incluye examen físico completo, diagnóstico inicial y plan de tratamiento. Recomendado para chequeos anuales o cuando notes cambios en el comportamiento de tu mascota.',
+        calendlyUrl: 'https://calendly.com/jassalonsosanchez/consulta-general-clinvet'
+      },
+      'vacunacion': {
+        title: 'Servicio de Vacunación',
+        description: 'Aplicación de vacunas según el esquema de tu mascota.',
+        duration: '20 minutos',
+        price: '$200 - $400 MXN',
+        details: 'Vacunación completa con registro oficial. Trae la cartilla de vacunación previa. Incluye examen físico rápido antes de la aplicación.',
+        calendlyUrl: 'https://calendly.com/clinvet-navolato/vacunacion'
+      },
+      'estetica': {
+        title: 'Estética Canina Profesional',
+        description: 'Servicio completo de belleza para tu mascota.',
+        duration: '60-90 minutos',
+        price: '$400 - $800 MXN',
+        details: 'Incluye baño con shampoo especializado, corte de pelo según raza o preferencia, corte de uñas, limpieza de oídos y cepillado dental.',
+        calendlyUrl: 'https://calendly.com/clinvet-navolato/estetica-canina'
+      },
+      'cirugia': {
+        title: 'Consulta Quirúrgica',
+        description: 'Evaluación pre-operatoria y planificación de cirugía.',
+        duration: '45 minutos',
+        price: '$400 - $600 MXN',
+        details: 'Evaluación completa pre-quirúrgica, explicación del procedimiento, riesgos, cuidados post-operatorios y cotización detallada.',
+        calendlyUrl: 'https://calendly.com/clinvet-navolato/consulta-quirurgica'
+      }
+    };
+
+    function selectService(service, element) {
+      selectedService = service;
+      
+      // Remover selección anterior
+      document.querySelectorAll('.cita-option').forEach(opt => {
+        opt.classList.remove('selected');
+      });
+      
+      // Agregar selección actual
+      element.classList.add('selected');
+      
+      // Actualizar pasos
+      updateSteps(2);
+      
+      // Mostrar detalles del servicio
+      const details = serviceData[service];
+      document.getElementById('serviceDetails').style.display = 'block';
+      document.getElementById('selectedServiceTitle').textContent = details.title;
+      document.getElementById('selectedServiceDesc').textContent = details.description;
+    }
+
+    function updateSteps(stepNumber) {
+      // Reset all steps
+      document.querySelectorAll('.step').forEach(step => {
+        step.classList.remove('active');
+      });
+      
+      // Activate steps up to current
+      for (let i = 1; i <= stepNumber; i++) {
+        document.getElementById('step' + i).classList.add('active');
+      }
+    }
+
+    function openCalendly() {
+      if (!selectedService) {
+        alert('Por favor selecciona un servicio primero');
+        return;
+      }
+      
+      const calendlyUrl = serviceData[selectedService].calendlyUrl;
+      
+      // Abrir en nueva pestaña
+      window.open(calendlyUrl, '_blank');
+      
+      // Actualizar al paso 3
+      updateSteps(3);
+      
+      // Guardar en localStorage para tracking
+      localStorage.setItem('lastSelectedService', selectedService);
+      localStorage.setItem('lastScheduleAttempt', new Date().toISOString());
+    }
+
+    function showServiceInfo() {
+      if (!selectedService) return;
+      
+      const service = serviceData[selectedService];
+      document.getElementById('modalTitle').textContent = service.title;
+      document.getElementById('modalContent').innerHTML = `
+        <p><strong>Duración:</strong> ${service.duration}</p>
+        <p><strong>Inversión aproximada:</strong> ${service.price}</p>
+        <p><strong>Incluye:</strong> ${service.details}</p>
+        <div style="background: #e8f5e8; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+          <strong>📋 Preparación para tu cita:</strong>
+          <ul style="text-align: left;">
+            <li>Trae cartilla de vacunación</li>
+            <li>Si es primera vez, trae cualquier historial médico</li>
+            <li>No alimentes a tu mascota 2 horas antes (si es consulta)</li>
+          </ul>
+        </div>
+      `;
+      
+      document.getElementById('serviceModal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('serviceModal').style.display = 'none';
+    }
+
+    function closeModalAndSchedule() {
+      closeModal();
+      openCalendly();
+    }
+
+    // Panel de administración
+    function toggleAdminPanel() {
+      const panel = document.getElementById('adminPanel');
+      const password = prompt('Contraseña de administración:');
+      
+      // Contraseña - CAMBIA ESTO POR UNA SEGURA
+      if (password === 'ClinVet2024!') {
+        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        if (panel.style.display === 'block') {
+          loadAdminData();
+        }
+      } else {
+        alert('Contraseña incorrecta');
+      }
+    }
+
+    function loadAdminData() {
+      // Simular datos de administración
+      const citasHoy = [
+        { hora: '10:00 AM', servicio: 'Consulta General', cliente: 'María González', mascota: 'Rocky', telefono: '6727511207' },
+        { hora: '11:30 AM', servicio: 'Vacunación', cliente: 'Carlos Rodríguez', mascota: 'Mimi', telefono: '6727511207' },
+        { hora: '3:00 PM', servicio: 'Estética', cliente: 'Ana Martínez', mascota: 'Max', telefono: '6727511207' }
+      ];
+      
+      document.getElementById('citasHoy').textContent = citasHoy.length;
+      document.getElementById('proximaCita').textContent = citasHoy[0].hora;
+      
+      const citasList = document.getElementById('citasList');
+      citasList.innerHTML = citasHoy.map(cita => `
+        <div class="cita-item">
+          <strong>🕒 ${cita.hora}</strong><br>
+          <strong>${cita.servicio}</strong><br>
+          👤 ${cita.cliente} - 🐾 ${cita.mascota}<br>
+          📞 <a href="tel:${cita.telefono}">${cita.telefono}</a>
+        </div>
+      `).join('');
+    }
+
+    function exportCitas() {
+      alert('📊 Exportando citas a Excel...\n\nEn una implementación real, esto descargaría un archivo con todas las citas programadas.');
+    }
+
+    function syncCalendars() {
+      alert('🔄 Sincronizando con Google Calendar...\n\nTodas las citas de Calendly se sincronizan automáticamente.');
+    }
+
+    // Botón flotante de administración
+    setTimeout(() => {
+      const adminBtn = document.createElement('button');
+      adminBtn.innerHTML = '<i class="fas fa-cog"></i>';
+      adminBtn.title = 'Panel de Administración';
+      adminBtn.style.position = 'fixed';
+      adminBtn.style.bottom = '20px';
+      adminBtn.style.right = '20px';
+      adminBtn.style.background = '#065df5';
+      adminBtn.style.color = 'white';
+      adminBtn.style.border = 'none';
+      adminBtn.style.borderRadius = '50%';
+      adminBtn.style.width = '50px';
+      adminBtn.style.height = '50px';
+      adminBtn.style.cursor = 'pointer';
+      adminBtn.style.zIndex = '1000';
+      adminBtn.style.fontSize = '1.2rem';
+      adminBtn.style.boxShadow = '0 4px 8px rgba(0,0,0,0.3)';
+      adminBtn.onclick = toggleAdminPanel;
+      document.body.appendChild(adminBtn);
+    }, 3000);
+    
+    // Función para obtener direcciones
+    function getDirections() {
+      // Coordenadas de Clinvet Navolato (destino)
+      const destinoLat = 24.7545357;
+      const destinoLng = -107.6925275;
+      const nombreDestino = "Clinvet Navolato";
+      
+      // Verificar si el navegador soporta geolocalización
+      if (navigator.geolocation) {
+        // Solicitar ubicación actual del usuario
+        navigator.geolocation.getCurrentPosition(
+          function(position) {
+            // Ubicación actual obtenida exitosamente
+            const origenLat = position.coords.latitude;
+            const origenLng = position.coords.longitude;
+            
+            // Crear URL de Google Maps con indicaciones
+            const mapsUrl = `https://www.google.com/maps/dir/${origenLat},${origenLng}/${destinoLat},${destinoLng}/@${origenLat},${origenLng},12z`;
+            
+            // Abrir Google Maps en nueva pestaña
+            window.open(mapsUrl, '_blank');
+          },
+          function(error) {
+            // Si el usuario niega la ubicación o hay error
+            console.log('Error obteniendo ubicación:', error);
+            
+            // Ofrecer alternativa sin ubicación actual
+            const confirmar = confirm(
+              'Para darte indicaciones precisas necesitamos tu ubicación actual. ' +
+              '¿Permitiste el acceso a tu ubicación?\n\n' +
+              'Puedes:\n' +
+              '• Volver a intentar permitiendo la ubicación\n' +
+              '• Abrir Maps y escribir tu ubicación manualmente'
+            );
+            
+            if (confirmar) {
+              // URL alternativa sin ubicación específica
+              const mapsUrlAlt = `https://www.google.com/maps/dir//Clinvet+Navolato`;
+              window.open(mapsUrlAlt, '_blank');
+            }
+          },
+          {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 60000
+          }
+        );
+      } else {
+        // Navegador no soporta geolocalización
+        alert('Tu navegador no soporta la función de geolocalización. Te abriremos Google Maps para que ingreses tu ubicación manualmente.');
+        const mapsUrlAlt = `https://www.google.com/maps/dir//Clinvet+Navolato`;
+        window.open(mapsUrlAlt, '_blank');
+      }
+    }
+
+    // Formulario de WhatsApp (se mantiene igual)
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const nombre = document.getElementById('nombre').value;
+      const telefono = document.getElementById('telefono').value;
+      const tipoMascota = document.getElementById('tipo-mascota').value;
+      const mensaje = document.getElementById('mensaje').value;
+      
+      const textoWhatsApp = `*NUEVO MENSAJE DESDE LA WEB CLINVET*
+
+*Nombre:* ${nombre}
+*Teléfono:* ${telefono}
+*Tipo de Mascota:* ${tipoMascota}
+
+*Mensaje:*
+${mensaje}
+
+*Este mensaje fue enviado desde el formulario de contacto de la página web.*`;
+      
+      const textoCodificado = encodeURIComponent(textoWhatsApp);
+      
+      window.open(`https://wa.me/526727511207?text=${textoCodificado}`, '_blank');
+      
+      alert('¡Gracias! Serás redirigido a WhatsApp para enviar tu mensaje. Por favor, presiona "Enviar" en WhatsApp para completar el contacto.');
+      
+      document.getElementById('contactForm').reset();
+    });
+
+    // Smooth scroll y menú hamburguesa (se mantienen igual)
+    document.getElementById('menuToggle').addEventListener('click', function() {
+      document.getElementById('navMenu').classList.toggle('show');
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 </body>
 </html>
